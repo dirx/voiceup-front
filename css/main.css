@@ -10,6 +10,9 @@ body {
     color: #fff;
 }
 
+#output {
+    cursor: pointer;
+}
 .center-div {
     position: absolute;
     margin: auto;
@@ -27,12 +30,19 @@ body {
     padding: 10px;
     overflow: hidden;
     text-align: center;
-    -webkit-animation-play-state: paused;
-    animation-play-state: paused;
 }
 
 .listing {
     border-color: greenyellow;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    -moz-animation-duration: 7s;
+    -webkit-animation-duration: 2s;
+    -moz-animation-name: changeShadow;
+    -webkit-animation-name: changeShadow;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-direction: alternate;
+    -webkit-animation-direction: alternate;
 }
 
 .reading {
@@ -50,16 +60,14 @@ body {
     -webkit-animation-iteration-count: infinite;
     -moz-animation-direction: alternate;
     -webkit-animation-direction: alternate;
-    -webkit-animation-play-state: running;
-    animation-play-state: running;
 }
 
 .error {
     border-color: orange;
 }
 
-.done {
-    border-color: #4db9af;
+.stopped {
+    border-color: #51cec4;
     background-color: #4db9af;
 }
 

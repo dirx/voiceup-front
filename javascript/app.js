@@ -3,7 +3,7 @@ $(function () {
     var userId = '';
     var userContextCategory = 'important';
     var userContextArticle = null;
-    var currentStatus = 'loading';
+    var currentStatus = 'stopped';
     var voices = {
         'en': 'UK English Male',
         'de': 'Deutsch Female'
@@ -17,10 +17,11 @@ $(function () {
     if (annyang) {
         var startDemo = function () {
             setStatus('reading');
-            read('Good morning.', 'en');
-            read('User.', 'en');
-            read('Here is the latest news for today', 'en');
-            getLatestArticle()
+            read('Good morning. User. Here is the latest news for today', 'en', {
+                onend: function () {
+                    getLatestArticle();
+                }
+            });
         };
 
         var getArticleForCategory = function (category) {
@@ -110,12 +111,9 @@ $(function () {
         };
 
         var endDemo = function () {
-            console.log('that´ it');
-            read("That's it!");
-            read('Thank you a lot.', 'en');
-            read('Thank you.');
-            read('1000 Dank.', 'de');
-            setStatus('done');
+            console.log('that´s it');
+            read("That's it! Thank you a lot.", 'en');
+            setStatus('stopped');
         };
 
         var readArticle = function (article) {
@@ -124,7 +122,7 @@ $(function () {
             //trackArticle(article);
 
             var gotoNextArticle = function () {
-                //nextArticle();
+                nextArticle();
             };
             var readText = function () {
                 read(article.text, article.language, {
@@ -161,11 +159,14 @@ $(function () {
             'Give me news in :category': getArticleForCategory,
             'Give me news about :query': getArticleForQuery,
             'Give me (the latest) news': getLatestArticle,
-            'Skip': skipArticle,
-            'More': moreArticle,
+            'Skip (news)': skipArticle,
+            'Next (news)': skipArticle,
+            'More (news)': moreArticle,
             "That'\s it": endDemo,
-            "Quit": endDemo,
-            'Good bye': endDemo
+            "Quit (demo)": endDemo,
+            'Stop (demo)': endDemo,
+            'Good bye': endDemo,
+            'Start (demo)': startDemo
         };
 
         // OPTIONAL: activate debug mode for detailed logging in the console
@@ -176,7 +177,7 @@ $(function () {
         // add more debug callbacks
         annyang.addCallback('start', function () {
             console.log('engine ready!');
-            setStatus('error');
+            setStatus('listening');
         });
         annyang.addCallback('error', function () {
             console.log('engine error!');
@@ -211,12 +212,21 @@ $(function () {
         // Start listening. You can call this here, or attach this call to an event, button, etc.
         annyang.start();
 
-        setTimeout(startDemo, 2000);
+        //setTimeout(startDemo, 2000);
+        setStatus('stopped');
+
+        $('#output').bind('click', function () {
+            if (currentStatus === 'stopped' || currentStatus === 'listening') {
+                startDemo();
+            } else {
+                endDemo();
+            }
+        });
     } else {
         setStatus('error');
     }
 
     if (responsiveVoice.voiceSupport() === false) {
-        //setStatus('error');
+        setStatus('error');
     }
 });
