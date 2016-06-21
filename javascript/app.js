@@ -130,7 +130,7 @@ $(function () {
                 });
             };
             read(article.title, article.language, {
-                onend: readText
+                onend: gotoNextArticle
             });
         };
 
@@ -155,18 +155,25 @@ $(function () {
         };
 
         var commands = {
-            'Give me news for :category': getArticleForCategory,
-            'Give me news in :category': getArticleForCategory,
-            'Give me news about :query': getArticleForQuery,
-            'Give me (the latest) news': getLatestArticle,
-            'Skip (news)': skipArticle,
-            'Next (news)': skipArticle,
-            'More (news)': moreArticle,
-            "That'\s it": endDemo,
-            "Quit (demo)": endDemo,
-            'Stop (demo)': endDemo,
-            'Good bye': endDemo,
-            'Start (demo)': startDemo
+            'give me news for :category': getArticleForCategory,
+            'give me news in :category': getArticleForCategory,
+            'give me news about :query': getArticleForQuery,
+            'give me (the latest) news': getLatestArticle,
+            'skip': skipArticle,
+            'skip (news)': skipArticle,
+            'next': skipArticle,
+            'funky': skipArticle,
+            'next (news)': skipArticle,
+            'more': moreArticle,
+            'more (news)': moreArticle,
+            "that'\s it": endDemo,
+            "quit": endDemo,
+            "quit (demo)": endDemo,
+            'stop': endDemo,
+            'stop (demo)': endDemo,
+            'good bye': endDemo,
+            'start': startDemo,
+            'start (demo)': startDemo
         };
 
         // OPTIONAL: activate debug mode for detailed logging in the console
