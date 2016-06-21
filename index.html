@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var annyangScript = document.createElement('script');
+        var jqueryScript = document.createElement('script');
+        var responsiveVoiceScript = document.createElement('script');
+        var appScript = document.createElement('script');
+        appScript.src = "/javascript/app.js";
+        if (/localhost/.exec(window.location)) {
+            jqueryScript.src = "//localhost:8080/javascript/jquery-3.0.0.min.js";
+            annyangScript.src = "//localhost:8080/javascript/annyang.js";
+            responsiveVoiceScript.src = "//localhost:8080/javascript/responsivevoice.js";
+        } else {
+            jqueryScript.src = "//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js";
+            annyangScript.src = "//cdnjs.cloudflare.com/ajax/libs/annyang/2.4.0/annyang.min.js";
+            responsiveVoiceScript.src = "//code.responsivevoice.org/responsivevoice.js";
+        }
+        document.write(jqueryScript.outerHTML);
+        document.write(responsiveVoiceScript.outerHTML);
+        document.write(annyangScript.outerHTML);
+        document.write(appScript.outerHTML);
+    </script>
+    <script type="text/javascript">
+        var utag_data = {
+            "page_name": "alexa_test_page", // name of page
+            "user_id": "alexa1", // used as unique cross-device ID
+            "string_01": "alexa great site", // stored as string in visitor profile
+            "string_02": "alexa hello", // stored as string in visitor profile
+            "string_03": "alexa blah", // stored as string in visitor profile
+            "metric_total_01": "1", // set to value in visitor profile
+            "metric_total_02": "250", // set to value in visitor profile
+            "metric_add_01": "5", // will be incremented in visitor profile
+            "metric_add_02": "7", // will be incremented in visitor profile
+        };
+    </script>
+    <script type="text/javascript"> (function (a, b, c, d) {
+        a = '//tags.tiqcdn.com/utag/tealium-mediahackday/team.demo/prod/utag.js';
+        b = document;
+        c = 'script';
+        d = b.createElement(c);
+        d.src = a;
+        d.type = 'text/java' + c;
+        d.async = true;
+        a = b.getElementsByTagName(c)[0];
+        a.parentNode.insertBefore(d, a)
+    })(); </script>
+    <link rel="stylesheet" href="/css/main.css"/>
+</head>
+<body>
+<div id="output" class="center-div"><p></p></div>
+</body>
+</html>

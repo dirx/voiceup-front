@@ -1,0 +1,74 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
+
+body {
+    background-color: #4db9af;
+    margin: 0 0;
+    padding: 0 0;
+    font-weight: normal;
+    font: 42px/1.6 "Roboto Condensed", sans-serif;
+    letter-spacing: -2px;
+    color: #fff;
+}
+
+.center-div {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    max-height: 200px;
+    max-width: 200px;
+    background-color: #8263a6;
+    border: 10px solid #fff;
+    border-radius: 50%;
+    padding: 10px;
+    overflow: hidden;
+    text-align: center;
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+}
+
+.listing {
+    border-color: greenyellow;
+}
+
+.reading {
+    border-color: lightskyblue;
+}
+
+.loading {
+    border-color: burlywood;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    -moz-animation-duration: 7s;
+    -webkit-animation-duration: 2s;
+    -moz-animation-name: changeShadow;
+    -webkit-animation-name: changeShadow;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-direction: alternate;
+    -webkit-animation-direction: alternate;
+    -webkit-animation-play-state: running;
+    animation-play-state: running;
+}
+
+.error {
+    border-color: orange;
+}
+
+.done {
+    border-color: #4db9af;
+    background-color: #4db9af;
+}
+
+@-webkit-keyframes changeShadow {
+    from {
+        box-shadow: 0 0 10px burlywood;
+    }
+
+    to {
+        box-shadow: 0 0 20px white;
+    }
+}
